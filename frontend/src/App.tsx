@@ -1,10 +1,6 @@
 import * as React from "react";
 import { getHelloWorld, getQuestions, getAnswers } from "./api";
-// import { IAllAnswers } from "@ts-react-express-starter/common";
-// import interfaces from '../../common/src/interfaces'
-// import { questions } from '../../common/src/questions'
 const { useState, useEffect } = React;
-// import MyQuestion from './components/MyQuestion';
 import Layout from './components/layout/Layout';
 import Review from './components/Answers/Review';
 import Answer from './components/Answers/Answer';
@@ -15,36 +11,31 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 const App: React.FunctionComponent = () => {
   const [serverMessage, setServerMessage] = useState<string>("Calling backend...");
-  // const [serverQuestions, setServerQuestions] = useState<any>([]);
-  // const [serverAnswers, setServerAnswers] = useState<any>([]);
 
   useEffect(() => {
     getHelloWorld().then(json => setServerMessage(json.message));
 
   }, []);
-  // useEffect(() => {
-  //   getQuestions().then(json => setServerQuestions(json));
-  //   getAnswers().then(json => setServerAnswers(json));
-  //   console.log(serverQuestions);
-  // }, []);
 
   return (
     <Router>
       <StoreContainer.Provider>
-        <Layout className="App">
-          <div className="container">
-            <h1>Hello From React!</h1>
-            <p>{serverMessage}</p>
-            <Switch>
-              <Route exact path={'/'} component={(serverMessage: any) => <Answer {...serverMessage} />} />
-              <Route exact path={'/answer'} component={Answer} />
-              <Route exact path={'/review'} component={Review} />
-              <Route exact path={'/question'} component={InputQuestions} />
-              <Route exact path={'/listquestions'} component={ListQuestions} />
-              <Route path={'*'} ><NotFound /></Route>
-            </Switch>
-          </div>
-        </Layout>
+        <div className="App" style={{ backgroundColor: "#9E9E9E", height: '100%' }}>
+          <Layout>
+            <div className="container" >
+              {/* <h1>Hello From React!</h1>
+            <p>{serverMessage}</p> */}
+              <Switch>
+                <Route exact path={'/'} component={(serverMessage: any) => <Answer {...serverMessage} />} />
+                <Route exact path={'/answer'} component={Answer} />
+                <Route exact path={'/review'} component={Review} />
+                <Route exact path={'/question'} component={InputQuestions} />
+                <Route exact path={'/listquestions'} component={ListQuestions} />
+                <Route path={'*'} ><NotFound /></Route>
+              </Switch>
+            </div>
+          </Layout>
+        </div>
       </StoreContainer.Provider>
     </Router >
   );

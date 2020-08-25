@@ -83,7 +83,10 @@ export default function EditQuestion(props: { question: IQuestion, setQuestions:
               <label>Title (max 255 characters)</label>
               <input type='text' className='form-control' value={info} onChange={(e: any) => { setInfo(e.target.value); }} placeholder="title of survey" />
               <label>Your questions</label>
-              <textarea rows={3} className='form-control mt-1' placeholder="your questions (json format) " value={description} onChange={(e: any) => { setDescription(e.target.value) }} />
+              <textarea rows={3} className='form-control mt-1' placeholder="your questions (json format) "
+                // value={description} 
+                value={''} // pb formating to solve when receiving data into string instead of an array, tried to change format in the props already ...
+                onChange={(e: any) => { setDescription(e.target.value) }} />
             </div>
 
             {/* <!-- Modal footer --> */}
@@ -104,7 +107,7 @@ export default function EditQuestion(props: { question: IQuestion, setQuestions:
 
 
 
-  // // problemn with JSON.parse : "[ {...},{...} ]"
+  // // problemn with JSON.parse : "[ {...},{...} ]" for ingecting in the initial state of description
   // const convertToJSON = (data: any) => {
   //   let res: object[] = [];
   //   {
