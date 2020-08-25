@@ -22,9 +22,7 @@ const App: React.FunctionComponent = () => {
       <StoreContainer.Provider>
         <div className="App" style={{ backgroundColor: "whitesmoke", height: '100%' }}>
           <Layout>
-            <header className="App-header"
-              style={{ backgroundColor: "#282c34", minHeight: '100vh', color: 'white' }}
-            >
+            <header className="App-header" style={{ backgroundColor: "#282c34", minHeight: '100vh', color: 'white' }}>
               <div className="container" >
                 {/* <h1>Hello From React!</h1>
             <p>{serverMessage}</p> */}
