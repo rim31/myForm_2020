@@ -38,6 +38,11 @@ export default function Review() {
     setAllQuestions(unstated.questions)
   }, [])
 
+  React.useEffect(() => {
+    console.log("Reviews  allAnswers", allAnswers);
+  }, [allAnswers])
+
+
   return (
     <div>
       <div className="text-center">

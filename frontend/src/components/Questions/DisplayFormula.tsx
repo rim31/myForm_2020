@@ -12,12 +12,38 @@ import React from 'react';
 */}
 export default function DisplayFormula(props: { questions: any }) {
 
+  {/**
+    function answersPossible(questions: any) : count the number of possible answer
+   */}
+  const answersPossible = () => {
+    let res: number = 0;
+    if (props.questions.description) {
+      props.questions.description.map((e: any) => {
+        let tmp: any;
+        try {
+          tmp = eval(e);
+        } catch (err) {
+          console.error(err.message); // can thro a specific error , but just display in console.error
+          return 0;
+        }
+        if (tmp)
+          tmp.map((a: any) => { res = res + a.choices.length })
+      })
+      return (res);
+    }
+    else {
+      return 0;
+    }
+  }
+
+
+
   return (
     <div className='text-dark'>
       {props.questions ?
         <p>
           <button className="btn btn-secondary" type="button" data-toggle="collapse" data-target={`#collapse${props.questions.question_id}`} aria-expanded="false" aria-controls="collapse">
-            Q : {props.questions.question_id}
+            n° : {props.questions.question_id} - Q/A {answersPossible(props.questions.description)}
           </button>
         </p>
         : <></>}
@@ -58,8 +84,6 @@ export default function DisplayFormula(props: { questions: any }) {
           </div>
         </div>
         : <></>}
-
-
 
     </div>
 

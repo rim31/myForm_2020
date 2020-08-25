@@ -23,7 +23,6 @@ export default function EditQuestion(props: { question: IQuestion, setQuestions:
   const [info, setInfo] = useState<string>(props.question.info)
   const [description, setDescription] = useState<any>(props.question.description.toString())// problem cause the  response from the DB is a string and JSON.parse doesn't work , so be careful when update
 
-
   {/**  
     function updateQuestion(params) : info: string , description: string 
     edit the question with the 2 parameters in useState
@@ -60,9 +59,13 @@ export default function EditQuestion(props: { question: IQuestion, setQuestions:
         console.error(err.message);
       }
     } else {
+      console.log("answersPossible(description)", answersPossible(description))
       alert('title : min 1 / max 255 characters please');
     }
   }
+
+
+
 
   return (
     <Fragment>

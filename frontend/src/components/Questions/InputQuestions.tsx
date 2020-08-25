@@ -21,6 +21,9 @@ export default function InputQuestion(props: any) {
   const [description, setDescription] = useState<any>("")
   const [info, setInfo] = useState<string>("")
 
+
+
+
   {/*
     function onSubmitQuestion() : save question to DB
     backend need info:string and description : string[]
@@ -45,9 +48,13 @@ export default function InputQuestion(props: any) {
         console.error(err.message);
       }
     } else {
-      alert('title : min 1 / max 255 characters please');
+      alert('title : [1 - 255] characters, or wrong format Description please');
     }
   };
+
+
+
+
 
   return (
     <Fragment>
