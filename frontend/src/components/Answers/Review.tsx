@@ -56,9 +56,10 @@ export default function Review() {
         )}
         <h2 style={{ color: 'green' }}>Answers summary</h2>
         {allAnswers.map((answer: IAnswer, i: number) => {
-          return (<div key={i}>Response n°  {answer.answer_id} | Formula n° {answer.info}
+          return (<div key={i}>
+            <span style={{ fontWeight: 'bold' }}>Response n°  {answer.answer_id} | Formula n° {answer.info}</span>
             {answer.description ?
-              answer.description.map((data: any, id: number) => <p key={id} style={{ color: 'whitesmoke' }}> {id} => {typeof ((data))}  {typeof (JSON.parse(data))} {JSON.parse(data).question} -> answer : {JSON.parse(data).answer} {smiley(JSON.parse(data).answer)} - {JSON.parse(data).label}</p>)
+              answer.description.map((data: any, id: number) => <p key={id} style={{ color: 'whitesmoke', fontStyle: 'italic' }}> {id} - {typeof ((data))}  {typeof (JSON.parse(data))} {JSON.parse(data).question} -> answer : {JSON.parse(data).answer} {smiley(JSON.parse(data).answer)} - {JSON.parse(data).label}</p>)
               : "..."}
           </div>
           )
