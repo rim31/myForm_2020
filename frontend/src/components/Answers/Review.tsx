@@ -39,56 +39,32 @@ export default function Review() {
   }, [])
 
   return (
-    <>
-      <h1>Answers : {allAnswers.length} - Questions : {allQuestions.length}</h1>
-      <h2 style={{ color: 'blue' }}>Questions summary</h2>
-      {allQuestions.map((question: any, i: number) => {
-        // if (question.description !== undefined) {
-        //   question.description.map((e: any, index: number) => {
-        //     console.log("map", index, eval(e));
-        //     formula[index] = eval(e); // convert string to json !! spend 4 hours on it cause JSON.parse / stringify PB
-        //   })
-        // }
-        // console.log("form", formula);
-        return (
-          <DisplayFormula key={i} questions={question} />
-          // <div key={i}> <h3>id : {question.question_id} - {question.info}</h3>
-          //   <div>
-          //     {question.description ? question.description.map((e: any, ind: number) => {
-          //       let tmp: any = eval(e);
-          //       let numberAnswersPossible: number = 0;
-          //       // console.log("tmp", ind, tmp);
-          //       return (<div key={ind}>
-          //         {tmp.map((a: any, ii: number) => {
-          //           return (<div key={ii}><h4>{ii + 1} -  {a.label}</h4>
-          //             {a.choices.length > 0 ? a.choices.map((b: any, iii: number) => {
-          //               numberAnswersPossible++;
-          //               return (<p key={iii}><em>{b.value}- {b.label}</em></p>)
-          //             }) : ''}
-          //           </div>)
-          //         }
-          //         )}
-          //         <h5 className='mb-5'>{numberAnswersPossible} answers possibles</h5>
-          //       </div>)
-          //     }) : ""}
-          //   </div>
-          // </div>
-        )
-      }
-      )}
-      <h2 style={{ color: 'green' }}>Answers summary</h2>
-      {allAnswers.map((answer: IAnswer, i: number) => {
-        // console.log("++info++", answer.info);
-        // console.log("++description++", answer.description);
-        return (<div key={i}>Response n°  {answer.answer_id} | Formula n° {answer.info}
-          {/* info : {typeof (answer.info)} description : {typeof (answer.description)}| {answer.description ? answer.description.length:0} | {answer.description} | */}
-          {answer.description ?
-            answer.description.map((data: any, id: number) => <p key={id} style={{ color: 'grey' }}> {id} => {typeof ((data))}  {typeof (JSON.parse(data))} {JSON.parse(data).question} -> answer : {JSON.parse(data).answer} {smiley(JSON.parse(data).answer)} - {JSON.parse(data).label}</p>)
-            : "..."}
-        </div>
-        )
-      }
-      )}
-    </>
+    <div>
+      <div className="text-center">
+        <h2 className="page-section-heading mb-0 d-inline-block">Reviews Section</h2>
+      </div>
+      <div className="portfolio-item-caption-content text-center text-white"><i className="far fa-chart-bar fa-3x mb-2"></i></div>
+      <div className="col-md-12 col-lg-12 mb-12 justify-content-center h-100 w-100 pt-3 pb-3" style={{ backgroundColor: '#58B19F', borderRadius: '8px' }}>
+
+        <h1>Answers : {allAnswers.length} - Questions : {allQuestions.length}</h1>
+        <h2 style={{ color: 'blue' }}>Questions summary</h2>
+        {allQuestions.map((question: any, i: number) => {
+          return (
+            <DisplayFormula key={i} questions={question} />
+          )
+        }
+        )}
+        <h2 style={{ color: 'green' }}>Answers summary</h2>
+        {allAnswers.map((answer: IAnswer, i: number) => {
+          return (<div key={i}>Response n°  {answer.answer_id} | Formula n° {answer.info}
+            {answer.description ?
+              answer.description.map((data: any, id: number) => <p key={id} style={{ color: 'whitesmoke' }}> {id} => {typeof ((data))}  {typeof (JSON.parse(data))} {JSON.parse(data).question} -> answer : {JSON.parse(data).answer} {smiley(JSON.parse(data).answer)} - {JSON.parse(data).label}</p>)
+              : "..."}
+          </div>
+          )
+        }
+        )}
+      </div>
+    </div>
   );
 }

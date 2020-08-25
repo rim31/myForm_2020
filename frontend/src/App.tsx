@@ -22,20 +22,34 @@ const App: React.FunctionComponent = () => {
       <StoreContainer.Provider>
         <div className="App" style={{ backgroundColor: "whitesmoke", height: '100%' }}>
           <Layout>
-            <div className="container" >
-              {/* <h1>Hello From React!</h1>
+            <header className="App-header"
+              style={{
+                backgroundColor: "#282c34",
+                minHeight: '100vh',
+                display: 'flex',
+                flexDirection: 'column',
+                // alignItems: 'center',
+                // justifyContent: 'center',
+                color: 'white'
+              }}
+            >
+              <div className="container" >
+                {/* <h1>Hello From React!</h1>
             <p>{serverMessage}</p> */}
-              <Switch>
-                <Route exact path={'/'} component={(serverMessage: any) => <Answer {...serverMessage} />} />
-                <Route exact path={'/answer'} component={Answer} />
-                <Route exact path={'/review'} component={Review} />
-                <Route exact path={'/question'} component={InputQuestions} />
-                <Route exact path={'/listquestions'} component={ListQuestions} />
-                <Route path={'*'} ><NotFound /></Route>
-              </Switch>
-            </div>
+                <Switch>
+                  <Route exact path={'/'} component={(serverMessage: any) => <Answer {...serverMessage} />} />
+                  <Route exact path={'/answer'} component={Answer} />
+                  <Route exact path={'/review'} component={Review} />
+                  <Route exact path={'/question'} component={InputQuestions} />
+                  <Route exact path={'/listquestions'} component={ListQuestions} />
+                  <Route path={'*'} ><NotFound /></Route>
+                </Switch>
+              </div>
+            </header>
           </Layout>
         </div>
+
+
       </StoreContainer.Provider>
     </Router >
   );

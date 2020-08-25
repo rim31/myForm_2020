@@ -100,7 +100,7 @@ export default function ResponseFormula(props: { questions: any }) {
           {questions ?
             <div>
               {props.questions ?
-                <FormLabel component="legend" style={{ fontSize: 20, fontWeight: 'bold' }}>id : {props.questions.question_id} - {props.questions.info}</FormLabel>
+                <FormLabel component="legend" style={{ fontSize: 20, fontWeight: 'bold' }}>Q : {props.questions.question_id} - {props.questions.info}</FormLabel>
                 : ''}
               <div>
                 {questions[0] ?

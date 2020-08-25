@@ -1,13 +1,23 @@
 import React, { useState, useEffect, Fragment } from 'react';
 import { Button, FormControl, TextareaAutosize, Input, InputLabel, FormHelperText, TextField } from '@material-ui/core';
 import { IAllQuestions } from "@ts-react-express-starter/common";
+import { StoreContainer } from '../Store';
+
 
 interface IBody {
   info: string;
   description: any;
 }
 
+{/**
+  Component Add Question
+  Question {
+    info: string; (max 255)
+    description: string[], no limit :D
+  }
+*/}
 export default function InputQuestion(props: any) {
+  const unstated = StoreContainer.useContainer();
   const [description, setDescription] = useState<any>("")
   const [info, setInfo] = useState<string>("")
 
@@ -26,7 +36,11 @@ export default function InputQuestion(props: any) {
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(body)
         });
-        window.location = "/"; // return to the homepage to answer,TODO to change like with EditQuestion  to have a nice refresh
+        unstated.getQuestions();
+        setInfo('');
+        setDescription('');
+        alert("thank you !")
+        // window.location = "/"; // return to the homepage to answer,TODO to change like with EditQuestion  to have a nice refresh
       } catch (err) {
         console.error(err.message);
       }
@@ -37,21 +51,27 @@ export default function InputQuestion(props: any) {
 
   return (
     <Fragment>
-      <FormControl className="d-flex" onSubmit={onSubmitQuestion}>
-        <label>Title</label>
-        <TextField className="mb-1 mt-1" id="outlined-basic" label="Title of your form (max 255 characters)" variant="outlined" value={info} onChange={(e: any) => setInfo(e.target.value)} />
-        <label>Questions(json format)</label>
-        <TextareaAutosize className="mb-1" variant="outlined" aria-label="minimum height" rowsMin={4} placeholder="insert your questions (json format)"
-          value={description} onChange={(e: any) => setDescription(e.target.value)} />
-        <FormHelperText id="my-helper-text">JSON format please</FormHelperText>
-        <Button type="submit" onClick={onSubmitQuestion}
-          variant="contained" color="primary">Submit</Button>
-      </FormControl>
+      <div className="text-center">
+        <h2 className="page-section-heading  mb-0 d-inline-block">Question Section</h2>
+      </div>
+      <div className="portfolio-item-caption-content text-center text-white"><i className="far fa-question-circle fa-3x mb-2"></i></div>
+      <div className="col-md-12 col-lg-12 mb-12 justify-content-center h-100 w-100 pt-3 pb-3" style={{ backgroundColor: '#58B19F', borderRadius: '8px' }}>
 
-      <h2>example question format json</h2>
-      <pre style={{ border: true, backgroundColor: "grey" }}>
-        <code>
-          {`
+        <FormControl className="d-flex" onSubmit={onSubmitQuestion}>
+          <label>Title</label>
+          <TextField className="mb-1 mt-1t" color="text.primary" id="outlined-basic" label="Title of your form (max 255 characters)" variant="outlined" value={info} onChange={(e: any) => setInfo(e.target.value)} />
+          <label>Questions(json format)</label>
+          <TextareaAutosize className="mb-1" variant="outlined" aria-label="minimum height" rowsMin={4} placeholder="insert your questions (json format)" style={{ backgroundColor: 'whitesmoke' }}
+            value={description} onChange={(e: any) => setDescription(e.target.value)} />
+          <FormHelperText id="my-helper-text">JSON format please</FormHelperText>
+          <Button type="submit" onClick={onSubmitQuestion}
+            variant="contained" color="primary">Submit</Button>
+        </FormControl>
+
+        <h2>example question format json</h2>
+        <pre style={{ border: 'string', backgroundColor: "grey", borderRadius: '5px' }}>
+          <code>
+            {`
           [
               {
             label: "How are you feeling at work?",
@@ -84,8 +104,9 @@ export default function InputQuestion(props: any) {
                 ],
               },
             ]`}
-        </code>
-      </pre>
-    </Fragment>
+          </code>
+        </pre>
+      </div>
+    </Fragment >
   );
 }

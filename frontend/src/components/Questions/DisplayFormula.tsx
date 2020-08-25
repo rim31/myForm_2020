@@ -13,18 +13,18 @@ import React from 'react';
 export default function DisplayFormula(props: { questions: any }) {
 
   return (
-    <div>
+    <div className='text-dark'>
       {props.questions ?
         <p>
-          <button className="btn btn-info" type="button" data-toggle="collapse" data-target={`#collapse${props.questions.question_id}`} aria-expanded="false" aria-controls="collapse">
-            {props.questions.info}
+          <button className="btn btn-secondary" type="button" data-toggle="collapse" data-target={`#collapse${props.questions.question_id}`} aria-expanded="false" aria-controls="collapse">
+            Q : {props.questions.question_id}
           </button>
         </p>
         : <></>}
 
       {props.questions ?
         <div className="collapse" id={`collapse${props.questions.question_id}`}>
-          <div className="card card-body">
+          <div className="card card-body" style={{ backgroundColor: 'whitesmoke' }}>
             {props.questions ?
               <div>
                 <h3>n° : {props.questions.question_id} - {props.questions.info}</h3>

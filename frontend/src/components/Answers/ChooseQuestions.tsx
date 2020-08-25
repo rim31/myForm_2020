@@ -64,7 +64,8 @@ export default function ChooseQuestions(props: { formula: number, setFormula: an
       <div>
         {allQuestions.length > 0 ?
           <header className='mb-2'>
-            <h1>FORM : {activeStep + 1} / {allQuestions.length}</h1>
+            <h2>Please choose a form : </h2>
+            <h3>Form : n°{activeStep + 1} / {allQuestions.length}</h3>
             <Button variant="contained" color="secondary" onClick={handleBack}>Previous</Button>
             <Button className="ml-1" variant="contained" color="secondary" onClick={handleNext}>Next</Button>
           </header>
@@ -81,6 +82,7 @@ export default function ChooseQuestions(props: { formula: number, setFormula: an
           <span>
             <span>Preview : </span>
             <DisplayFormula questions={allQuestions[activeStep]} />
+            <h3>Select your answer and go to next question : </h3>
             <ResponseFormula questions={unstated.questions[activeStep]} />
           </span>
           : <></>}

@@ -58,28 +58,34 @@ export default function ListQuestions(props: any) {
 
   return (
     <Fragment>
-      <h1>List of Questions</h1>
-      <table className="table mt-2 text-center">
-        <thead>
-          <tr>
-            <th>Info</th>
-            <th>Results</th>
-            <th>Edit</th>
-            <th>Delete</th>
-          </tr>
-        </thead>
-        <tbody>
+      <div className="text-center">
+        <h2 className="page-section-heading mb-0 d-inline-block">List Questions Section</h2>
+      </div>
+      <div className="portfolio-item-caption-content text-center text-white"><i className="fas fa-list-ol fa-3x mb-2"></i></div>
+      <div className="col-md-12 col-lg-12 mb-12 justify-content-center h-100 w-100 pt-3 pb-3" style={{ backgroundColor: '#58B19F', borderRadius: '8px' }}>
 
-          {questions ? questions.map((question: IQuestion, i: number) => (
-            <tr key={question.question_id}>
-              <td> {question.question_id} {question.info}</td>
-              <td><DisplayFormula questions={unstated.questions[i]} /></td>
-              <td><EditQuestion question={question} setQuestions={setQuestions} questions={questions} /></td>
-              <td><button className='btn btn-danger' onClick={() => deleteQuestion(question.question_id)}>Delete</button></td>
+        {/* <h1>List of Questions</h1> */}
+        <table className="table mt-2 text-center">
+          <thead>
+            <tr>
+              <th>Info</th>
+              <th>Results</th>
+              <th>Edit</th>
+              <th>Delete</th>
             </tr>
-          )) : <tr></tr>}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {questions ? questions.map((question: IQuestion, i: number) => (
+              <tr key={question.question_id}>
+                <td className="text-left"> {i} - {question.info}</td>
+                <td><DisplayFormula questions={unstated.questions[i]} /></td>
+                <td><EditQuestion question={question} setQuestions={setQuestions} questions={questions} /></td>
+                <td><button className='btn btn-danger' onClick={() => deleteQuestion(question.question_id)}>Delete</button></td>
+              </tr>
+            )) : <tr></tr>}
+          </tbody>
+        </table>
+      </div>
     </Fragment>
   )
 }
