@@ -30,33 +30,35 @@ export default function EditQuestion(props: { question: IQuestion, setQuestions:
     */}
   const updateQuestion = async (e: any) => {
     e.preventDefault();
-    if (info.length > 254)
-      alert('title : max 255 character please');
-    try {
-      const body: IBody = { info: info, description: [description] }
-      console.log("body", body);
-      const updateQuestion = await fetch(`http://localhost:8081/api/q/${props.question.question_id}`, {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(body)
-      });
-      console.log("updated Questions : ", updateQuestion);
-      // updating the page without using refresh window.location = "/" :P 
-      let newQ: IQuestion[] = [...props.questions];
-      let obj: IQuestion | undefined = newQ.find(q => q.question_id === props.question.question_id);
-      if (obj) {
-        let index: number = newQ.indexOf(obj)
-        obj = {
-          question_id: props.question.question_id,
-          info: info,
-          description: description,
+    if (info.length < 255 && info.length > 0) {
+      try {
+        const body: IBody = { info: info, description: [description] }
+        console.log("body", body);
+        const updateQuestion = await fetch(`http://localhost:8081/api/q/${props.question.question_id}`, {
+          method: "PUT",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(body)
+        });
+        console.log("updated Questions : ", updateQuestion);
+        // updating the page without using refresh window.location = "/" :P 
+        let newQ: IQuestion[] = [...props.questions];
+        let obj: IQuestion | undefined = newQ.find(q => q.question_id === props.question.question_id);
+        if (obj) {
+          let index: number = newQ.indexOf(obj)
+          obj = {
+            question_id: props.question.question_id,
+            info: info,
+            description: description,
+          }
+          newQ[index] = obj;
+          props.setQuestions(newQ);
+          unstated.getQuestions();
         }
-        newQ[index] = obj;
-        props.setQuestions(newQ);
-        unstated.getQuestions();
+      } catch (err) {
+        console.error(err.message);
       }
-    } catch (err) {
-      console.error(err.message);
+    } else {
+      alert('title : min 1 / max 255 characters please');
     }
   }
 

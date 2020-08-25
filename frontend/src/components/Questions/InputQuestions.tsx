@@ -18,18 +18,20 @@ export default function InputQuestion(props: any) {
    */}
   const onSubmitQuestion = async (e: any) => {
     e.preventDefault();
-    if (info.length > 254)
-      alert('title : max 255 character please');
-    try {
-      const body: IBody = { info: info, description: [description] };
-      const response: any = await fetch("http://localhost:8081/api/q", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(body)
-      });
-      window.location = "/"; // return to the homepage to answer,TODO to change like with EditQuestion  to have a nice refresh
-    } catch (err) {
-      console.error(err.message);
+    if (info.length < 255 && info.length > 0) {
+      try {
+        const body: IBody = { info: info, description: [description] };
+        const response: any = await fetch("http://localhost:8081/api/q", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(body)
+        });
+        window.location = "/"; // return to the homepage to answer,TODO to change like with EditQuestion  to have a nice refresh
+      } catch (err) {
+        console.error(err.message);
+      }
+    } else {
+      alert('title : min 1 / max 255 characters please');
     }
   };
 
