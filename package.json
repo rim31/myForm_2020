@@ -1,0 +1,33 @@
+{
+  "name": "ts-react-express-starter",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "private": true,
+  "workspaces": [
+    "frontend",
+    "server",
+    "common"
+  ],
+  "scripts": {
+    "start": "yarn start:dev",
+    "start:dev": "concurrently yarn:start:dev:*",
+    "start:dev:frontend": "yarn workspace @ts-react-express-starter/frontend start",
+    "start:dev:server": "yarn workspace @ts-react-express-starter/server start",
+    "build": "concurrently yarn:build:*",
+    "build:frontend": "yarn workspace @ts-react-express-starter/frontend build",
+    "build:server": "yarn workspace @ts-react-express-starter/server build",
+    "build:common": "yarn workspace @ts-react-express-starter/common build",
+    "start:build": "cross-env NODE_ENV=\"production\" node dist",
+    "test": "jest --projects frontend common server",
+    "test-ci": "cross-env JEST_JUNIT_OUTPUT_DIR=\"test-results/jest\" jest --projects frontend common server --ci --reporters=default --reporters=jest-junit",
+    "test:frontend": "jest --projects frontend",
+    "test:common": "jest --projects common",
+    "test:server": "jest --projects server"
+  },
+  "devDependencies": {
+    "concurrently": "^4.1.0",
+    "cross-env": "^5.2.0",
+    "jest-junit": "^6.4.0"
+  }
+}

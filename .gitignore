@@ -1,0 +1,26 @@
+# OSX
+#
+.DS_Store
+
+
+# node.js
+#
+node_modules
+node_modules/
+npm-debug.log
+yarn-error.log
+
+server/.env
+server/.DS_Store
+server/node_modules
+server/node_modules/
+
+# react.js
+#
+frontend/.env
+frontend/.DS_Store
+frontend/node_modules
+frontend/node_modules/
+
+# key
+.env
