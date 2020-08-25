@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 const pool = require('../../db');
 
 {/**
-format data : 
+format data model: 
 answer {
   answer_id: number; (primary key)
   info: string; (for id of form questions)

@@ -2,7 +2,7 @@ import { Request, Response, json } from "express";
 const pool = require('../../db');
 
 {/**
-format data : 
+format data model : 
 question {
   question_id: number; (primary key)
   info: string; (for title of form questions)
