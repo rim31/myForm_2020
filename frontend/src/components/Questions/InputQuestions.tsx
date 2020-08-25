@@ -59,8 +59,8 @@ export default function InputQuestion(props: any) {
 
         <FormControl className="d-flex" onSubmit={onSubmitQuestion}>
           <label>Title</label>
-          <TextField className="mb-1 mt-1t" color="text.primary" id="outlined-basic" label="Title of your form (max 255 characters)" variant="outlined" value={info} onChange={(e: any) => setInfo(e.target.value)} />
-          <label>Questions(json format)</label>
+          <TextField className="mb-1 mt-1t" id="outlined-basic" label="Title of your form (max 255 characters)" variant="outlined" value={info} onChange={(e: any) => setInfo(e.target.value)} />
+          <label>Questions</label>
           <TextareaAutosize className="mb-1" variant="outlined" aria-label="minimum height" rowsMin={4} placeholder="insert your questions (json format)" style={{ backgroundColor: 'whitesmoke' }}
             value={description} onChange={(e: any) => setDescription(e.target.value)} />
           <FormHelperText id="my-helper-text">JSON format please</FormHelperText>

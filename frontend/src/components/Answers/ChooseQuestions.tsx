@@ -65,7 +65,7 @@ export default function ChooseQuestions(props: { formula: number, setFormula: an
         {allQuestions.length > 0 ?
           <header className='mb-2'>
             <h2>Please choose a form : </h2>
-            <h3>Form : n°{activeStep + 1} / {allQuestions.length}</h3>
+            <h3 className="text-secondary">Form : n°{activeStep + 1} / {allQuestions.length}</h3>
             <Button variant="contained" color="secondary" onClick={handleBack}>Previous</Button>
             <Button className="ml-1" variant="contained" color="secondary" onClick={handleNext}>Next</Button>
           </header>

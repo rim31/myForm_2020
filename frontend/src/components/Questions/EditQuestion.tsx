@@ -1,5 +1,7 @@
 import React, { Fragment, useState } from 'react'
 import { IAllQuestions } from "@ts-react-express-starter/common";
+import { Button, } from '@material-ui/core';
+
 import { StoreContainer } from '../Store';
 
 interface IQuestion {
@@ -65,8 +67,11 @@ export default function EditQuestion(props: { question: IQuestion, setQuestions:
   return (
     <Fragment>
       {/* <!-- Button to Open the Modal --> */}
-      <button type="button" className="btn btn-primary" data-toggle="modal"
-        data-target={`#id_question${props.question.question_id}`}>Edit</button>
+      {/* <button type="button" className="btn btn-primary"  */}
+      <Button variant="contained" color="primary"
+        data-toggle="modal" data-target={`#id_question${props.question.question_id}`}>Edit
+      </Button>
+      {/* </button> */}
 
       {/* <!-- The Modal --> */}
       <div className="modal" id={`id_question${props.question.question_id}`}
