@@ -59,7 +59,6 @@ export default function EditQuestion(props: { question: IQuestion, setQuestions:
         console.error(err.message);
       }
     } else {
-      console.log("answersPossible(description)", answersPossible(description))
       alert('title : min 1 / max 255 characters please');
     }
   }
@@ -84,7 +83,7 @@ export default function EditQuestion(props: { question: IQuestion, setQuestions:
 
             {/* <!-- Modal Header --> */}
             <div className="modal-header">
-              <h4 className="modal-title">Edit Questions</h4>
+              <h4 className="modal-title">Edit Questions (Admin)</h4>
               <button type="button" className="close" data-dismiss="modal"
                 onClick={() => { setInfo(info); setDescription(description); }}>&times;</button>
             </div>
