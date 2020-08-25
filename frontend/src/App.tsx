@@ -20,7 +20,7 @@ const App: React.FunctionComponent = () => {
   return (
     <Router>
       <StoreContainer.Provider>
-        <div className="App" style={{ backgroundColor: "#9E9E9E", height: '100%' }}>
+        <div className="App" style={{ backgroundColor: "whitesmoke", height: '100%' }}>
           <Layout>
             <div className="container" >
               {/* <h1>Hello From React!</h1>

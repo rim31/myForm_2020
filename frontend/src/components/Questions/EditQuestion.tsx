@@ -19,13 +19,14 @@ interface IBody {
 export default function EditQuestion(props: { question: IQuestion, setQuestions: any, questions: IQuestion[] }) {
   const unstated = StoreContainer.useContainer();
   const [info, setInfo] = useState<string>(props.question.info)
-  const [description, setDescription] = useState<any>(props.question.description)// problem cause the  response from the DB is a string and JSON.parse doesn't work , so be careful when update
+  const [description, setDescription] = useState<any>(props.question.description.toString())// problem cause the  response from the DB is a string and JSON.parse doesn't work , so be careful when update
 
 
   {/**  
     function updateQuestion(params) : info: string , description: string 
     edit the question with the 2 parameters in useState
-    (note : server want an info:string, description: string[])
+
+    (note : server want an info:string, description: string[] - pb editing just display description in the form input)
     */}
   const updateQuestion = async (e: any) => {
     e.preventDefault();
@@ -84,8 +85,7 @@ export default function EditQuestion(props: { question: IQuestion, setQuestions:
               <input type='text' className='form-control' value={info} onChange={(e: any) => { setInfo(e.target.value); }} placeholder="title of survey" />
               <label>Your questions</label>
               <textarea rows={3} className='form-control mt-1' placeholder="your questions (json format) "
-                // value={description} 
-                value={''} // pb formating to solve when receiving data into string instead of an array, tried to change format in the props already ...
+                value={description}// pb formating to solve when receiving data into string instead of an array, tried to change format in the props already ...
                 onChange={(e: any) => { setDescription(e.target.value) }} />
             </div>
 
