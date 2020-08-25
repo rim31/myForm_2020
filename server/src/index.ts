@@ -19,7 +19,7 @@ app.use(express.json());
 
 
 
-// TODO: all these should come from some config
+// DONE: all these should come from some config 
 console.log(config.port_prod, config.port_dev)
 const PORT = isProd ? config.port_prod : config.port_dev;
 const PATH_PREFIX = isProd ? config.path_prefix_prod : "";
@@ -40,7 +40,7 @@ app.get(`${PATH_PREFIX}/`, async (req, res) => {
   res.json(obj);
 });
 
-// Routes
+// ======== Routes =========
 app.use('/api', apiRoutes);// go to /routes/auth.ts
 
 
