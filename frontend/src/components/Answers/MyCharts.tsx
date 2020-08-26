@@ -1,23 +1,15 @@
 import React, { PureComponent } from 'react';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, } from 'recharts';
-import { StoreContainer } from '../Store';
 
-// const data = [
-//   { name: 'Q - A', a1: 4000, a2: 2400, a3: 2400, a4: 1000, a5: 3000, },
-//   { name: 'Q - B', a1: 3000, a2: 1398, a3: 2210, a4: 1000, a5: 3000, },
-//   { name: 'Q - C', a1: 2000, a2: 9800, a3: 2290, a4: 1000, a5: 3000, },
-//   { name: 'Q - D', a1: 2780, a2: 3908, a3: 2000, a4: 1000, a5: 3000, }
-//   // { question: 'how ?', label OK: value 1, label :-|: value 2, label :-): value 3, }
-// ];
 
+{/**
+Component display charts of all answers*/}
 export default function MyCharts(props: { results: any }) {
-  const unstated = StoreContainer.useContainer();
   const [data, setData] = React.useState<any>(
     [
-      { name: 'Q - A', answer_1: 4000, answer_2: 2400, answer_3: 2400, answer_4: 1000, answer_5: 3000, },
-      { name: 'Q - B', answer_1: 3000, answer_2: 1398, answer_3: 2210, answer_4: 1000, answer_5: 3000, },
-      { name: 'Q - C', answer_1: 2000, answer_2: 9800, answer_3: 2290, answer_4: 1000, answer_5: 3000, },
-      { name: 'Q - D', answer_1: 2780, answer_2: 3908, answer_3: 2000, answer_4: 1000, answer_5: 3000, }
+      { name: 'Question - A', answer_1: 4000, answer_2: 2400, answer_3: 2400, answer_4: 1000, answer_5: 3000, },
+      { name: 'Question - B', answer_1: 3000, answer_2: 1398, answer_3: 2210, answer_4: 1000, answer_5: 3000, },
+      { name: 'Question - C', answer_1: 2000, answer_2: 9800, answer_3: 2290, answer_4: 1000, answer_5: 3000, },
     ]
   )
 
@@ -38,19 +30,34 @@ export default function MyCharts(props: { results: any }) {
     }
   }
 
-
+  {/**
+  function duplicate (Iid, array of answer, array o result
+    count the number of the answer (1-5) and add in th row of the final array
+    example : find 3 times answer 1 => add 3 in the [{answer_1 : 3}, {...} ] 
+  */}
   const countDuplicate = (id: number, arr: any, res: any) => {
     arr.forEach((x: any) => { res[`answer_${(JSON.parse(x)).value}_${smiley((JSON.parse(x)).value)}`] = (res[`answer_${(JSON.parse(x)).value}_${smiley((JSON.parse(x)).value)}`] || 0) + 1; });
   }
 
-  // do a copy of array TODO
+  {/**function add (res: array, id: number)
+    create a new element with ID of question if not exist
+  */}
   const add = (arr: any, name: number) => {
     const found = arr.some((el: any) => el.name === name);
     if (!found) arr.push({ name: name });
     return arr;
   }
 
-  const donnees: any = (d: any) => {
+  {/**
+    function createData(d : data from the pros (all results))
+    create the data as expect by library recharts
+    [
+      { name: 'Question - A', answer_1: 4000, answer_2: 2400, answer_3: 2400, answer_4: 1000, answer_5: 3000, },
+      { name: 'Question - B', answer_1: 3000, answer_2: 1398, answer_3: 2210, answer_4: 1000, answer_5: 3000, },
+      { name: 'Question - C', answer_1: 2000, answer_2: 9800, answer_3: 2290, answer_4: 1000, answer_5: 3000, },
+    ]
+ */}
+  const createData: any = (d: any) => {
     let xy: any[] = [];
     for (let index = 0; index < d.length; index++) {
       add(xy, d[index].info);
@@ -62,22 +69,12 @@ export default function MyCharts(props: { results: any }) {
     return (xy)
   }
 
-  // React.useEffect(() => {
-  //   console.log('from Mycharts', props.results)
-  //   let r: any;
-  //   if (props.results) {
-  //     r = (donnees(props.results));
-  //     setData(r)
-  //   }
-  //   console.log("TTT", r)
-  // }, [])
-
-
+  {/**
+    update charts on change of the props
+  */}
   React.useEffect(() => {
-    let r: any;
     if (props.results) {
-      r = (donnees(props.results));
-      setData(r);
+      setData(createData(props.results));
     }
   }, [props])
 

@@ -73,8 +73,5 @@ export default function Answer() {
         <ChooseQuestions formula={formula} setFormula={setFormula} />
       </div>
     </div>
-
-
-    // </div>
   )
 }
