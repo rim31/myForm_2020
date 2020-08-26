@@ -70,10 +70,14 @@ export default function MyCharts(props: { results: any }) {
       const element = d[index];
       console.log("element", element);
       console.log(add(xy, d[index].info));
+      let pos: number | undefined = xy.map((e: any) => { return e.name; }).indexOf(d[index].info);
+      console.log(d[index].info, pos, "POSITiON");
+      // countDuplicate(d[index].info, d[index].description, test);
       if (d[index].info == 62) {
+        // indexOf()
         // if (d[index].info) {
-        !('name' in test) && (test.name = d[index].info)
         // console.log('===>', d[index].description)
+        !('name' in test) && (test.name = d[index].info)
         countDuplicate(d[index].info, d[index].description, test);
         for (let i = 0; i < d[index].description.length; i++) {
           const element = d[index].description[i];
