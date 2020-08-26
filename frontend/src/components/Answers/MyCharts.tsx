@@ -14,16 +14,33 @@ export default function MyCharts(props: { results: any }) {
   const unstated = StoreContainer.useContainer();
   const [data, setData] = React.useState<any>(
     [
-      { name: 'Q - A', a1: 4000, a2: 2400, a3: 2400, a4: 1000, a5: 3000, },
-      { name: 'Q - B', a1: 3000, a2: 1398, a3: 2210, a4: 1000, a5: 3000, },
-      { name: 'Q - C', a1: 2000, a2: 9800, a3: 2290, a4: 1000, a5: 3000, },
-      { name: 'Q - D', a1: 2780, a2: 3908, a3: 2000, a4: 1000, a5: 3000, }
+      { name: 'Q - A', answer_1: 4000, answer_2: 2400, answer_3: 2400, answer_4: 1000, answer_5: 3000, },
+      { name: 'Q - B', answer_1: 3000, answer_2: 1398, answer_3: 2210, answer_4: 1000, answer_5: 3000, },
+      { name: 'Q - C', answer_1: 2000, answer_2: 9800, answer_3: 2290, answer_4: 1000, answer_5: 3000, },
+      { name: 'Q - D', answer_1: 2780, answer_2: 3908, answer_3: 2000, answer_4: 1000, answer_5: 3000, }
     ]
   )
 
+  const smiley = (i: number) => {
+    switch (i) {
+      case 1:
+        return "😫"
+      case 2:
+        return "🙁"
+      case 3:
+        return "😐"
+      case 4:
+        return "🙂"
+      case 5:
+        return "😃"
+      default:
+        return 'oho'
+    }
+  }
+
 
   const countDuplicate = (id: number, arr: any, res: any) => {
-    arr.forEach((x: any) => { res[`a${(JSON.parse(x)).value}`] = (res[`a${(JSON.parse(x)).value}`] || 0) + 1; });
+    arr.forEach((x: any) => { res[`answer_${(JSON.parse(x)).value}_${smiley((JSON.parse(x)).value)}`] = (res[`answer_${(JSON.parse(x)).value}_${smiley((JSON.parse(x)).value)}`] || 0) + 1; });
   }
 
   // do a copy of array TODO
@@ -78,11 +95,11 @@ export default function MyCharts(props: { results: any }) {
       <YAxis />
       <Tooltip />
       <Legend />
-      <Bar dataKey="a2" stackId="a" fill="#8884d8" />
-      <Bar dataKey="a1" stackId="a" fill="#82ca9d" />
-      <Bar dataKey="a3" stackId="a" fill="#020a9d" />
-      <Bar dataKey="a4" stackId="a" fill="#FF0000" />
-      <Bar dataKey="a5" stackId="a" fill="#FaF0aF" />
+      <Bar dataKey="answer_1_😫" stackId="answer" fill="#ff3f34" />
+      <Bar dataKey="answer_2_🙁" stackId="answer" fill="#ffc048" />
+      <Bar dataKey="answer_3_😐" stackId="answer" fill="#d2dae2" />
+      <Bar dataKey="answer_4_🙂" stackId="answer" fill="#00d8d6" />
+      <Bar dataKey="answer_5_😃" stackId="answer" fill="#05c46b" />
     </BarChart>
   );
 }
