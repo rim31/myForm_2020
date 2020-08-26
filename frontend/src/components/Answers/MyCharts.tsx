@@ -24,21 +24,6 @@ export default function MyCharts(props: { results: any }) {
     ]
   )
   let test: any = {}
-  // static jsfiddleUrl = 'https://jsfiddle.net/alidingling/90v76x08/';
-
-  // const updateData = (res: object) => {
-  //   let newData: any = [...xy];
-  //   let obj: any = newData.find(q => q.question_id === props.question.question_id);
-  //   if (obj) {
-  //     let index: number = newData.indexOf(obj)
-  //     obj = {
-  //       question_id: props.question.question_id,
-  //       info: info,
-  //       description: description,
-  //     }
-  //     newData[index] = obj;
-  //   }
-  // }
 
   // const countDuplicate = (id: number, arr: any, test: any) => {
   //   // let test: any = { "name": id };
@@ -57,7 +42,7 @@ export default function MyCharts(props: { results: any }) {
   // }
 
   const countDuplicate = (id: number, arr: any, res: any) => {
-    arr.forEach((x: any) => { res[`a${(JSON.parse(x)).value}`] = (res[(JSON.parse(x)).id] || 0) + 1; });
+    arr.forEach((x: any) => { res[`a${(JSON.parse(x)).value}`] = (res[`a${(JSON.parse(x)).value}`] || 0) + 1; });
   }
   // JSON parse "{"id":0,"label":"Terrible","answer":1,"question":"How are you feeling at work?","value":1}"
 
