@@ -23,7 +23,7 @@ export default function DisplayFormula(props: { questions: any }) {
         try {
           tmp = eval(e);
         } catch (err) {
-          console.error(err.message); // can thro a specific error , but just display in console.error
+          console.error(err.message); // can throw a specific error , but just display in console.error
           return 0;
         }
         if (tmp)

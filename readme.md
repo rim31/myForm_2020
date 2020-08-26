@@ -98,19 +98,6 @@ If it doesn't work delete all folders node_modules and run `yarn install`in fold
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 Start with installing all requried dependencies, and creating all appropriate symlinks between dependencies
 
 ```console
@@ -127,27 +114,54 @@ $ yarn start
 
 This starts _two_ servers on localhost, on ports 8080 and 8081. Open http://localhost:8080 to serve the files from `/frontend` - React and all that. localhost:8081 is where the `/server` stuff is, i.e. Express.
 
-### Testing
-
-To run all tests in the project, you can simply run
-
-```console
-$ yarn test
-```
-
-### Production Build
-
-To package everything into a production ready bundle, run:
-
-```console
-$ yarn build        # this compiles everything into dist/
-$ yarn start:build  # this will launch the express server in production mode on port 80
-```
-
-Production mode differs from Development Mode in the way that there is only one server: Express. This serves the React file directly from http://localhost/ root (note, the default HTTP port: 80). All REST paths are moved to a prefix of `/api`, on the same server.
-
-All this happens automatically by the configurations.
-
 ## General Notes
 
 The one/two servers difference is only to make the setup of the project as (technically) simple as possible, while suitable for as many as possible. You should be able to start using any of the three, together or separately, with minimal reconfiguration required.
+
+
+## NOTE
+
+- Relation in database : 
+
+```
+table_question {
+  question_id :primary key;
+  info: title ;
+  description: [{questions json format ...}]
+}
+
+table_answer {
+  answer_id :primary key;
+  info: question_id;
+  description: [{answers...}]
+}
+```
+
+So, you can find the question of the answer in the info which contains the question_id.
+in table_answer.description, you have all the infos
+response_id 3 | question_id 71
+[
+  {id: 0 , question : "How are you feeling at work?" , answer : 1 ,label : "Terrible"},
+  {id: 1 , question : "Is it clear what you should focus on and prioritize?" , answer : 5 ,label : "I know exactly what to do"},
+  {id: 2 , question : "Do you feel safe to disagree or voice your concerns at work?" , answer : 4 ,label : "Yes, typically"}
+]
+
+
+
+- Payload : 
+load balancing, with clusters
+2 servers : active/passive = availability
+
+2 servers  : active/active  
+zookeeper to manage them for example
+
+- static : (example FR only one server, FI other server)
+- dynamic :load balancing
+check availability of server
+one request have to be redirect to one or everyone can deal the request
+
+algo to payload
+- round robin : send the request every server one by one in a circle for example
+- round robin pounderated : example - one server can receive 75% and the other 25%
+- least connections : to the server the most available
+ 
