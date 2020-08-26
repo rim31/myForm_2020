@@ -55,7 +55,6 @@ export default function Review() {
       <div className="portfolio-item-caption-content text-center text-white"><i className="far fa-chart-bar fa-3x mb-2"></i></div>
       <div className="col-md-12 col-lg-12 mb-12 justify-content-center h-100 w-100 pt-3 pb-3" style={{ backgroundColor: '#58B19F', borderRadius: '8px' }}>
 
-        <MyCharts results={allAnswers} />
 
         <h1>Answers : {allAnswers.length} - Questions : {allQuestions.length}</h1>
         <h2 style={{ color: 'blue' }}>Questions summary</h2>
@@ -66,6 +65,9 @@ export default function Review() {
         }
         )}
         <h2 style={{ color: 'green' }}>Answers summary</h2>
+
+        <MyCharts results={unstated.answers} />
+
         {allAnswers.map((answer: IAnswer, i: number) => {
           return (<div key={i}>
             <span style={{ fontWeight: 'bold' }}>Response n°  {answer.answer_id} | Formula n° {answer.info}</span>
