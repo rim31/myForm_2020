@@ -63,17 +63,12 @@ export default function EditQuestion(props: { question: IQuestion, setQuestions:
     }
   }
 
-
-
-
   return (
     <Fragment>
       {/* <!-- Button to Open the Modal --> */}
-      {/* <button type="button" className="btn btn-primary"  */}
       <Button variant="contained" color="primary"
         data-toggle="modal" data-target={`#id_question${props.question.question_id}`}>Edit
       </Button>
-      {/* </button> */}
 
       {/* <!-- The Modal --> */}
       <div className="modal" id={`id_question${props.question.question_id}`}
@@ -94,7 +89,7 @@ export default function EditQuestion(props: { question: IQuestion, setQuestions:
               <input type='text' className='form-control' value={info} onChange={(e: any) => { setInfo(e.target.value); }} placeholder="title of survey" />
               <label>Your questions</label>
               <textarea rows={3} className='form-control mt-1' placeholder="your questions (json format) "
-                value={description}// pb formating to solve when receiving data into string instead of an array, tried to change format in the props already ...
+                value={description}
                 onChange={(e: any) => { setDescription(e.target.value) }} />
             </div>
 
