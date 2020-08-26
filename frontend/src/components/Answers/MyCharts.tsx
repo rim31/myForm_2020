@@ -57,22 +57,32 @@ export default function MyCharts(props: { results: any }) {
     // { question: 'how ?', label OK: value 1, label :-|: value 2, label :-): value 3, }
   ];
 
+
+  const add = (arr: any, name: number) => {
+    const found = arr.some((el: any) => el.name === name);
+    if (!found) arr.push({ name: name });
+    // !('name' in test) && (test.name = d[index].info)
+    return arr;
+  }
+
   const donnees = (d: any) => {
     for (let index = 0; index < d.length; index++) {
       const element = d[index];
       console.log("element", element);
+      console.log(add(xy, d[index].info));
       if (d[index].info == 62) {
+        // if (d[index].info) {
         !('name' in test) && (test.name = d[index].info)
-        console.log('===>', d[index].description)
+        // console.log('===>', d[index].description)
         countDuplicate(d[index].info, d[index].description, test);
         for (let i = 0; i < d[index].description.length; i++) {
           const element = d[index].description[i];
-          console.log("--> e ", element);
-          console.log("--==> Parse : e.value", (JSON.parse(element)).value);
+          // console.log("--> e ", element);
+          // console.log("--==> Parse : e.value", (JSON.parse(element)).value);
           // updateData()
         }
-      } else {
-        console.log("==> X ", "element");
+        // } else {
+        //   console.log("==> X ", "element");
       }
     }
   }
