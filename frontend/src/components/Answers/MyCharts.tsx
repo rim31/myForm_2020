@@ -3,16 +3,20 @@ import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, } from 're
 import { StoreContainer } from '../Store';
 
 const data = [
-  { name: 'Q - A', uv: 4000, pv: 2400, amt: 2400, },
-  { name: 'Q - B', uv: 3000, pv: 1398, amt: 2210, },
-  { name: 'Q - C', uv: 2000, pv: 9800, amt: 2290, },
-  { name: 'Q - D', uv: 2780, pv: 3908, amt: 2000, }
+  { name: 'Q - A', a1: 4000, a2: 2400, a3: 2400, a4: 1000, a5: 3000, },
+  { name: 'Q - B', a1: 3000, a2: 1398, a3: 2210, a4: 1000, a5: 3000, },
+  { name: 'Q - C', a1: 2000, a2: 9800, a3: 2290, a4: 1000, a5: 3000, },
+  { name: 'Q - D', a1: 2780, a2: 3908, a3: 2000, a4: 1000, a5: 3000, }
   // { question: 'how ?', label OK: value 1, label :-|: value 2, label :-): value 3, }
 ];
 
 export default function MyCharts(props: { results: any }) {
   const unstated = StoreContainer.useContainer();
   const [xy, setXy] = React.useState<array>([])
+  let counts: any = {};
+  let totalQuestion: any = [];
+  let res: any = {};
+  let test: any = {}
   // static jsfiddleUrl = 'https://jsfiddle.net/alidingling/90v76x08/';
 
   // const updateData = (res: object) => {
@@ -29,21 +33,38 @@ export default function MyCharts(props: { results: any }) {
   //   }
   // }
 
-  const countDuplicate = (arr: any) => {
-    let counts: any = {};
-    // arr.forEach((x: any) => { counts[x] = (counts[x] || 0) + 1; });
-    arr.forEach((x: any) => { counts[(JSON.parse(x)).value] = (counts[(JSON.parse(x)).value] || 0) + 1; });
-    console.log("COUNT : ", counts)
+  const countDuplicate = (id: number, arr: any, test: any) => {
+    // let test: any = { "name": id };
+    // let test: any = {};
+    console.log("id test", id, test)
+    arr.forEach((x: any) => { res[x] = (res[x] || 0) + 1; });
+    // arr.forEach((x: any) => { counts[(JSON.parse(x)).id] = (counts[(JSON.parse(x)).value] || 0) + 1; });
+    // arr.forEach((x: any) => { counts[(JSON.parse(x)).value] = (counts[(JSON.parse(x)).value] || 0) + 1; });
+    // arr.forEach((x: any) => { counts[(JSON.parse(x)).value] = (counts[(JSON.parse(x)).id] || 0) + 1; });
+    arr.forEach((x: any) => { counts[(JSON.parse(x)).value] = (counts[(JSON.parse(x)).id] || 0) + 1; });
+    arr.forEach((x: any) => { totalQuestion[(JSON.parse(x)).value] = (totalQuestion[(JSON.parse(x)).id] || 0) + 1; });
+    arr.forEach((x: any) => { test[(JSON.parse(x)).value] = (test[(JSON.parse(x)).id] || 0) + 1; });
+    // !('name' in test) && (test.name = id)
 
+    console.log("COUNT : ", res, counts, test)
   }
+
+  const exple = [
+    { name: 'Q - 42', a1: 4000, a2: 2400, a3: 2400, a4: 1000, a5: 3000, },
+    { name: 'Q - 36', a1: 3000, a2: 1398, a3: 2210, a4: 1000, a5: 3000, },
+    { name: 'Q - 77', a1: 2000, a2: 9800, a3: 2290, a4: 1000, a5: 3000, },
+    { name: 'Q - 21', a1: 2780, a2: 3908, a3: 2000, a4: 1000, a5: 3000, }
+    // { question: 'how ?', label OK: value 1, label :-|: value 2, label :-): value 3, }
+  ];
 
   const donnees = (d: any) => {
     for (let index = 0; index < d.length; index++) {
       const element = d[index];
       console.log("element", element);
       if (d[index].info == 62) {
+        !('name' in test) && (test.name = d[index].info)
         console.log('===>', d[index].description)
-        countDuplicate(d[index].description);
+        countDuplicate(d[index].info, d[index].description, test);
         for (let i = 0; i < d[index].description.length; i++) {
           const element = d[index].description[i];
           console.log("--> e ", element);
@@ -83,9 +104,11 @@ export default function MyCharts(props: { results: any }) {
       <YAxis />
       <Tooltip />
       <Legend />
-      <Bar dataKey="pv" stackId="a" fill="#8884d8" />
-      <Bar dataKey="uv" stackId="a" fill="#82ca9d" />
-      <Bar dataKey="amt" stackId="a" fill="#020a9d" />
+      <Bar dataKey="a2" stackId="a" fill="#8884d8" />
+      <Bar dataKey="a1" stackId="a" fill="#82ca9d" />
+      <Bar dataKey="a3" stackId="a" fill="#020a9d" />
+      <Bar dataKey="a4" stackId="a" fill="#FF0000" />
+      <Bar dataKey="a5" stackId="a" fill="#FaF0aF" />
     </BarChart>
   );
 }
