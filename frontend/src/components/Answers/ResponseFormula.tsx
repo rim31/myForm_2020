@@ -6,6 +6,7 @@ import FormControl from '@material-ui/core/FormControl';
 import FormLabel from '@material-ui/core/FormLabel';
 import Button from '@material-ui/core/Button';
 import { StoreContainer } from '../Store';
+import { IResp, QuestionChoice, MyQuestionChoice } from "@ts-react-express-starter/common";
 
 
 export default function ResponseFormula(props: { questions: any }) {
@@ -57,10 +58,10 @@ export default function ResponseFormula(props: { questions: any }) {
     function handleChange() : saving on click the answer localy in the array respQuestion
     whe click on an answer
   */}
-  const handleChange = (event) => {
+  const handleChange = (event: any) => {
     let resp: IResp | undefined = questions[0][activeStep].choices.find((i: any) => i.label === event.target.value)
     if (resp) {
-      let newResp: QuestionChoice[] = [...respQuestion];
+      let newResp: MyQuestionChoice[] = [...respQuestion];
       newResp[activeStep] = {
         id: activeStep,
         label: resp.label,

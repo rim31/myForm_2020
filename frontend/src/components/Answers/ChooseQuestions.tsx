@@ -4,12 +4,7 @@ import Button from '@material-ui/core/Button';
 import DisplayFormula from '../Questions/DisplayFormula';
 import ResponseFormula from './ResponseFormula';
 import { Link } from 'react-router-dom';
-
-interface IQuestion {
-  question_id: number;
-  info: string;
-  description: Array<object>;
-}
+import { IQuestion } from "@ts-react-express-starter/common";
 
 export default function ChooseQuestions(props: { formula: number, setFormula: any }) {
   const unstated = StoreContainer.useContainer();
@@ -17,7 +12,6 @@ export default function ChooseQuestions(props: { formula: number, setFormula: an
   const [allQuestions, setAllQuestions] = React.useState<IQuestion[]>(unstated.questions)
   const [questions, setQuestions] = React.useState<IQuestion>({})
   const [activeStep, setActiveStep] = React.useState<number>(0);
-
 
   {/*
     function handleNext() : Next Formula

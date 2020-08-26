@@ -2,12 +2,8 @@ import React from 'react';
 import { StoreContainer } from '../Store';
 import DisplayFormula from '../Questions/DisplayFormula';
 import MyCharts from './MyCharts';
+import { IAnswer } from "@ts-react-express-starter/common";
 
-interface IAnswer {
-  answer_id: number;
-  info: string;
-  description: object[]
-}
 
 export default function Review() {
   const unstated = StoreContainer.useContainer();
@@ -40,10 +36,10 @@ export default function Review() {
   }, [])
 
   {/**
-    creating data for charts
+    debug
   */}
   React.useEffect(() => {
-    console.log("Reviews  allAnswers", allAnswers);
+    // console.log("Reviews  allAnswers", allAnswers);
   }, [allAnswers])
 
 

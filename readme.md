@@ -121,7 +121,7 @@ The one/two servers difference is only to make the setup of the project as (tech
 
 ## NOTE
 
-- Relation in database : 
+### 1. - Relation in database : 
 
 ```
 table_question {
@@ -148,7 +148,7 @@ response_id 3 | question_id 71
 
 
 
-- Payload : 
+### 2. - Payload : 
 load balancing, with clusters
 2 servers : active/passive = availability
 
@@ -165,3 +165,9 @@ algo to payload
 - round robin pounderated : example - one server can receive 75% and the other 25%
 - least connections : to the server the most available
  
+
+#### TODO : 
+- protection against sql injection : example <script>alert('Injected!');</script>
+- better parsing ang checking of the input for question( insert one by one 🤔 too long, but nicer than a JSON)
+- dotenv config.js, with node OK , but NO with react typescript :/
+- Jest

@@ -1,13 +1,7 @@
 import React, { useState, useEffect, Fragment } from 'react';
-import { Button, FormControl, TextareaAutosize, Input, InputLabel, FormHelperText, TextField } from '@material-ui/core';
-import { IAllQuestions } from "@ts-react-express-starter/common";
+import { Button, FormControl, TextareaAutosize, FormHelperText, TextField } from '@material-ui/core';
+import { IBody } from "@ts-react-express-starter/common";
 import { StoreContainer } from '../Store';
-
-
-interface IBody {
-  info: string;
-  description: any;
-}
 
 {/**
   Component Add Question
@@ -20,8 +14,6 @@ export default function InputQuestion(props: any) {
   const unstated = StoreContainer.useContainer();
   const [description, setDescription] = useState<any>("")
   const [info, setInfo] = useState<string>("")
-
-
 
 
   {/*
@@ -51,9 +43,6 @@ export default function InputQuestion(props: any) {
       alert('title : [1 - 255] characters, or wrong format Description please');
     }
   };
-
-
-
 
 
   return (

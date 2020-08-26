@@ -1,14 +1,8 @@
 import React, { Fragment, useState } from 'react'
 import EditQuestion from './EditQuestion';
-// import { IAllQuestion } from "@ts-react-express-starter/common";
+import { IQuestion } from "@ts-react-express-starter/common";
 import DisplayFormula from '../Questions/DisplayFormula';
 import { StoreContainer } from '../Store';
-
-interface IQuestion {
-  question_id: number;
-  info: string;
-  description: Array<object>;
-}
 
 {/**
 COMPONENT ListQuestions : list of the questions in a table

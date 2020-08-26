@@ -1,19 +1,8 @@
 import React, { Fragment, useState } from 'react'
-import { IAllQuestions } from "@ts-react-express-starter/common";
 import { Button, } from '@material-ui/core';
-
+import { IQuestion, IBody } from "@ts-react-express-starter/common";
 import { StoreContainer } from '../Store';
 
-interface IQuestion {
-  question_id: number;
-  info: string;
-  description: Array<object>;
-}
-
-interface IBody {
-  info: string;
-  description: any;
-}
 
 {/** 
   Component modal :EditQuestion
@@ -26,7 +15,6 @@ export default function EditQuestion(props: { question: IQuestion, setQuestions:
   {/**  
     function updateQuestion(params) : info: string , description: string 
     edit the question with the 2 parameters in useState
-
     (note : server want an info:string, description: string[] - pb editing just display description in the form input)
     */}
   const updateQuestion = async (e: any) => {

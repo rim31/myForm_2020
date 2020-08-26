@@ -2,66 +2,15 @@ import React from 'react';
 import ChooseQuestions from './ChooseQuestions';
 import { StoreContainer } from '../Store';
 
-type QuestionChoice = {
-  id: number;
-  label: string;
-  value: 1 | 2 | 3 | 4 | 5;
-  answer: number;
-  question: string;
-}
-
-interface IResp {
-  label: string;
-  value: 1 | 2 | 3 | 4 | 5;
-}
-
-interface Question {
-  question_id: number;
-  label: string;
-  choices: QuestionChoice[];
-}
-
-const questionsDemo: Question[] = [
-  {
-    label: "How are you feeling at work?",
-    choices: [
-      { label: "Terrible", value: 1 },
-      { label: "Not good", value: 2 },
-      { label: "OK", value: 3 },
-      { label: "Good", value: 4 },
-      { label: "Great, I love my work", value: 5 },
-    ],
-  },
-];
-
-interface IAnswer {
-  info: string;
-  description: QuestionChoice[];
-}
-
 export default function Answer() {
   const unstated = StoreContainer.useContainer();
-  const [allAnswers, setAllAnswers] = React.useState<object[]>(unstated.answers)
-  const [allQuestions, setAllQuestions] = React.useState<object[]>(unstated.questions)
-  const [info, setInfo] = React.useState<object[]>()
   const [formula, setFormula] = React.useState<number>(0);
-  const [questions, setQuestions] = React.useState<Question[]>(questionsDemo)
 
   // ===== stating to fetch in Store =====
   React.useEffect(() => {
     unstated.getAnswers();
     unstated.getQuestions();
-    setAllAnswers(unstated.answers)
-    setAllQuestions(unstated.questions)
-
   }, [])
-
-
-  React.useEffect(() => {
-    if (unstated.questions && formula)
-      setQuestions(unstated.questions[formula])
-  }, [formula, unstated.questions])
-
 
   return (
     <div className="container">
