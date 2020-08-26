@@ -57,7 +57,7 @@ export default function MyCharts(props: { results: any }) {
     // { question: 'how ?', label OK: value 1, label :-|: value 2, label :-): value 3, }
   ];
 
-
+  // do a copy of array TODO
   const add = (arr: any, name: number) => {
     const found = arr.some((el: any) => el.name === name);
     if (!found) arr.push({ name: name });
@@ -73,12 +73,12 @@ export default function MyCharts(props: { results: any }) {
       let pos: number | undefined = xy.map((e: any) => { return e.name; }).indexOf(d[index].info);
       console.log(d[index].info, pos, "POSITiON");
       // countDuplicate(d[index].info, d[index].description, test);
-      if (d[index].info == 62) {
-        // indexOf()
-        // if (d[index].info) {
+      // if (d[index].info == 62) {
+      // indexOf()
+      if (d[index].info) {
         // console.log('===>', d[index].description)
-        !('name' in test) && (test.name = d[index].info)
-        countDuplicate(d[index].info, d[index].description, test);
+        !('name' in test) && (test.name = d[index].info)// add {name: id} if doesn't exist
+        countDuplicate(d[index].info, d[index].description, xy[pos]);
         for (let i = 0; i < d[index].description.length; i++) {
           const element = d[index].description[i];
           // console.log("--> e ", element);
@@ -87,6 +87,7 @@ export default function MyCharts(props: { results: any }) {
         }
         // } else {
         //   console.log("==> X ", "element");
+        console.log(xy)
       }
     }
   }
