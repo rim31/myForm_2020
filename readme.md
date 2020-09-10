@@ -1,14 +1,19 @@
 # Form - Questions / Answers :  website
 
+![](demo-form.gif)
+
+
+## 1 . front-end :  react js, typescript, unstated(redux like), backend : node js, express, Postgresql
+
+### Demo : create a from to know happiness of clients, display a graph of theirs answers
+
 Admin : 
 - insert question(json format)
 - edit your questions
+
 Client :
 - answers 
 - reviews your answers and questions
-
-
-![](demo-form.gif)
 
 
 
