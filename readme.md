@@ -22,8 +22,11 @@ Some buzzwords:
 - TypeScript
 - Babel
 - Webpack
+- unstated (redux like)
 - Yarn Workspaces
 - Hot Reload
+- Node Express
+- Postgresql
 
 ## Usage
 
